@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KamusIndoJawa</string>
+    <string name="search_field_hint">Cari kata Jawa atau Indonesia</string>
+    <string name="title_indonesia_jawa">Indonesia → Jawa</string>
+    <string name="title_jawa_indonesia">Jawa → Indonesia</string>
+    <string name="toolbar_title">Kamus Jawa</string>
+    <string name="arrow_icon_desc">arrow icon</string>
+</resources>
