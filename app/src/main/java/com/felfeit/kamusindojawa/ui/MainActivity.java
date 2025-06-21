@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.felfeit.kamusindojawa.R;
@@ -39,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         binding.rvDictionary.setAdapter(adapter);
         binding.rvDictionary.setLayoutManager(new LinearLayoutManager(this));
 
-        repository.getAllWords().observe(this, words -> {
-            adapter.submitList(words);
-        });
+        repository.getAllWords().observe(this, words -> adapter.submitList(words));
 
         binding.searchEditText.setOnEditorActionListener((v, actionId, evennt) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -50,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        binding.nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (scrollY > 100) {
+                binding.fabScrollToTop.show();
+            } else {
+                binding.fabScrollToTop.hide();
+            }
+        });
+
+        binding.fabScrollToTop.setOnClickListener(v -> binding.nestedScrollView.smoothScrollTo(0, 0));
     }
 
     private void setupEdgeToEdge() {
@@ -64,13 +73,9 @@ public class MainActivity extends AppCompatActivity {
     private void performSearch() {
         String query = Objects.requireNonNull(binding.searchEditText.getText()).toString().trim();
         if (query.isEmpty()) {
-            repository.getAllWords().observe(this, words -> {
-                adapter.submitList(words);
-            });
+            repository.getAllWords().observe(this, words -> adapter.submitList(words));
         } else {
-            repository.searchWords(query).observe(this, words -> {
-                adapter.submitList(words);
-            });
+            repository.searchWords(query).observe(this, words -> adapter.submitList(words));
         }
 
         // Hide keyboard after search
