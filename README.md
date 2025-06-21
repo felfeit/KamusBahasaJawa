@@ -4,6 +4,7 @@ Aplikasi Android yang memungkinkan pengguna menerjemahkan kata-kata dari Bahasa 
 
 ## 🖼️ Tampilan Aplikasi
 
+![KamusIndoJawa Preview](https://github.com/user-attachments/assets/7aa7559b-ae63-4948-9df8-e2adddb99d79)
 
 ## ✨ Fitur Aplikasi
 - 🔄 **Pencarian dua arah**: Terjemahkan dari Bahasa Jawa ke Indonesia maupun sebaliknya.
